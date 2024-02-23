@@ -8,6 +8,8 @@ services:
 
   api-gateway:
     build: ./api-gateway
+    networks:
+      - my_network
     ports:
       - "3000:3000"
     depends_on:
@@ -15,6 +17,8 @@ services:
 
   user-registration-service:
     build: ./user-registration-service-manager
+    networks:
+      - my_network
     ports:
       - "5000:5000"
     command: python create_new_user_rest_api.py
@@ -60,3 +64,7 @@ services:
       - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - redis
+
+networks:
+  my_network:
+    driver: bridge

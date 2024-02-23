@@ -9,7 +9,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/users', createProxyMiddleware({
-  target: 'http://0.0.0.0:5000',
+  target: 'http://user-registration-service:5000',
   changeOrigin: true,
   logLevel: 'debug',
   onProxyReq: (proxyReq, req, res) => {
@@ -21,7 +21,7 @@ app.use('/api/v1/users', createProxyMiddleware({
 }));
 
 app.use('/ping', createProxyMiddleware({
-  target: 'http://0.0.0.0:5000',
+  target: 'http://user-registration-service:5000',
   changeOrigin: true,
   logLevel: 'debug',
   onProxyReq: (proxyReq, req, res) => {

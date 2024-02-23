@@ -3,10 +3,9 @@ from flask_restful import Api, Resource, reqparse
 from user_registration_service_principal import registrar_usuario_principal
 from ping_service_log import registrar_ping_recibido
 from failures_with_user_registration_log import registrar_falla_en_registro
-
 import uuid
 import datetime
-
+from werkzeug.utils import url_quote
 
 app = Flask(__name__)
 api = Api(app)
