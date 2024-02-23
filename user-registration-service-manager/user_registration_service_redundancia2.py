@@ -1,7 +1,7 @@
 from celery import Celery
 
 # Create a Celery instance
-celery = Celery('tasks', broker='redis://localhost:6379/0')
+celery = Celery('tasks', broker='redis://redis:6379/0')
 
 def insert_user_in_db(email):
     file_name = "data.txt"

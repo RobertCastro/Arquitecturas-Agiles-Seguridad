@@ -17,6 +17,7 @@ services:
     build: ./user-registration-service-manager
     ports:
       - "5000:5000"
+    command: python create_new_user_rest_api.py
     depends_on:
       - redis
 
@@ -32,7 +33,7 @@ services:
     build: ./user-registration-service-manager
     command: celery -A user_registration_service_redundancia1 worker --loglevel=info
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - redis
 
@@ -40,7 +41,7 @@ services:
     build: ./user-registration-service-manager
     command: celery -A user_registration_service_redundancia2 worker --loglevel=info
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/2
+      - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - redis
 
@@ -48,7 +49,7 @@ services:
     build: ./user-registration-service-manager
     command: celery -A ping_service_log worker --loglevel=info
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/3
+      - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - redis
 
@@ -56,6 +57,6 @@ services:
     build: ./user-registration-service-manager
     command: celery -A failures_with_user_registration_log worker --loglevel=info
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/4
+      - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - redis

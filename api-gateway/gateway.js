@@ -9,11 +9,11 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/users', createProxyMiddleware({
-  target: 'http://localhost:5000',
+  target: 'http://0.0.0.0:5000',
   changeOrigin: true,
   logLevel: 'debug',
   onProxyReq: (proxyReq, req, res) => {
-    console.log(`Proxying request for ${req.url} to ${proxyReq.baseUrl}`);
+    console.log(`Proxying request for ${req.url} to ${'http://user-registration-service:5000'}${req.url}`);
   },
   onError: (err, req, res) => {
     console.log(`Error proxying ${req.url}: ${err.message}`);
@@ -21,11 +21,11 @@ app.use('/api/v1/users', createProxyMiddleware({
 }));
 
 app.use('/ping', createProxyMiddleware({
-  target: 'http://localhost:5000',
+  target: 'http://0.0.0.0:5000',
   changeOrigin: true,
   logLevel: 'debug',
   onProxyReq: (proxyReq, req, res) => {
-    console.log(`Proxying request for ${req.url} to ${proxyReq.baseUrl}`);
+    console.log(`Proxying request for ${req.url} to ${'http://user-registration-service:5000'}${req.url}`);
   },
   onError: (err, req, res) => {
     console.log(`Error proxying ${req.url}: ${err.message}`);
