@@ -11,6 +11,6 @@ def insert_user_in_db(email):
         file.write(email + ";principal" + "\n")
 
 
-@celery.task(name="queues.queue_user_registration_service_redundancia2.registrar_usuario_principal")
+@celery.task(name="queues.queue_user_registration_service_principal.registrar_usuario_principal")
 def registrar_usuario_principal(email):
     insert_user_in_db(email)
